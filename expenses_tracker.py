@@ -6,15 +6,11 @@ import matplotlib.pyplot as plt
 FILENAME = "expenses.csv"
 FIELDNAMES = ["date", "category", "amount", "description"]
 
-# ----------------------------
-# Add Expense and Save to CSV
-# ----------------------------
 def add_expense():
     date_input = input("Enter date (DD-MM-YYYY): ")
     try:
-        # Validate the input format
         parsed_date = datetime.strptime(date_input, "%d-%m-%Y")
-        formatted_date = parsed_date.strftime("%d-%m-%Y")  # Store as DD-MM-YYYY
+        formatted_date = parsed_date.strftime("%d-%m-%Y") 
     except ValueError:
         print("❌ Invalid date format! Please enter as DD-MM-YYYY.")
         return
@@ -40,10 +36,7 @@ def add_expense():
         })
 
     print("✅ Expense added and saved to file!")
-
-# ----------------------------
-# Load and Show All Expenses
-# ----------------------------
+    
 def show_expenses():
     if not os.path.exists(FILENAME) or os.stat(FILENAME).st_size == 0:
         print("❌ No expenses recorded yet.")
@@ -54,10 +47,7 @@ def show_expenses():
         print("\n📄 All Expenses:")
         for row in reader:
             print(f"{row['date']} | {row['category']} | ₹{row['amount']} | {row['description']}")
-
-# ----------------------------
-# Show Pie Chart
-# ----------------------------
+            
 def show_expense_chart():
     if not os.path.exists(FILENAME) or os.stat(FILENAME).st_size == 0:
         print("❌ No expenses recorded yet.")
@@ -85,9 +75,6 @@ def show_expense_chart():
     plt.axis("equal")
     plt.show()
 
-# ----------------------------
-# Monthly Report
-# ----------------------------
 def monthly_report():
     if not os.path.exists(FILENAME) or os.stat(FILENAME).st_size == 0:
         print("❌ No expenses recorded yet.")
@@ -118,9 +105,6 @@ def monthly_report():
     else:
         print(f"❌ No expenses found for {month}/{year}.")
 
-# ----------------------------
-# Main Menu
-# ----------------------------
 def main():
     while True:
         print("\n📘 Personal Expense Tracker")
@@ -148,3 +132,4 @@ def main():
 # ✅ Entry point
 if __name__ == "__main__":
     main()
+
